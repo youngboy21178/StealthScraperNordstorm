@@ -1,0 +1,28 @@
+scraper:
+  base_url: "https://www.nordstrom.com"
+  start_url: "https://www.nordstrom.com"
+  timeout_ms: 30000
+  default_delay_sec: 5
+  max_retries: 3
+
+browser:
+  headless: false
+  os: "macos"
+  webgl_vendor: "Apple"
+  webgl_renderer: "Apple M1, or similar"
+  humanize: true
+  locale: "en-US"
+  window_width: 1920
+  window_height: 1080
+
+database:
+  db_name: "scraper_data.duckdb"
+  schema_file: "infrastructure/database/schema.sql"
+
+storage:
+  cookies_file: "infrastructure/storage/cookies.json"
+  state_file: "infrastructure/storage/state.json"
+
+logging:
+  level: "DEBUG"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
