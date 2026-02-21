@@ -1,4 +1,11 @@
-venv
+# Віртуальне середовище
 env/
-.env
+venv/
+
+# Кеш Python та тестів
 __pycache__/
+.pytest_cache/
+
+# Бази даних (щоб не залити тестові дані на GitHub)
+*.db
+*.duckdb

@@ -36,7 +36,7 @@ class ScrapingService:
                 self.repository.save_all(products)
             
             cookies = await context.cookies()
-            self.browser_factory.cookies_manager.save(cookies)
+            await self.browser_factory.cookies_manager.save(cookies)
 
         finally:
             await self.browser_factory.stop()

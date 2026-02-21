@@ -2,7 +2,7 @@ import asyncio
 
 from services.scraping_service import ScrapingService
 from scraping.browser_factory import BrowserFactory
-from scraping.nordstrom_scraper import NordstromScraper
+from StealthScraperNordstorm.scraping.nordstrom_scraper import NordstromScraper 
 from infrastructure.database.connection import DatabaseConnection
 from infrastructure.database.repositories import ProductRepository
 from infrastructure.storage.cookies_manager import CookiesManager

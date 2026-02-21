@@ -59,10 +59,10 @@ class Scraper :
                 scroll_amount = random.randint(600, 900)
                 await self.page.mouse.wheel(0, scroll_amount)
                 
-                await self.random_delay(0.3, 0.8)
+                await self.random_delay()
         
-        async def random_delay(self, min_sec: float = 1.0, max_sec: float = 3.0) -> None:
+        async def random_delay(self) -> None:
             """Makes a random pause."""
-            delay = random.uniform(min_sec, max_sec)
+            delay = random.uniform(self.min_default_delay_sec, self.max_default_delay_sec)
             self.logger.debug(f"Sleeping for {delay:.2f} seconds...")
             await asyncio.sleep(delay)
