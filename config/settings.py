@@ -10,9 +10,9 @@ CONFIG_PATH = os.path.join(CURRENT_DIR, "settings.yaml")
 class ScraperSettings(BaseModel):
     base_url: str
     start_url: str
-    headless: bool
     timeout_ms: int
-    default_delay_sec: int
+    min_default_delay_sec: int
+    max_default_delay_sec: int
     max_retries: int
 
 class DatabaseSettings(BaseModel):

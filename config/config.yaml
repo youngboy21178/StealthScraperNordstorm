@@ -2,7 +2,8 @@ scraper:
   base_url: "https://www.nordstrom.com"
   start_url: "https://www.nordstrom.com"
   timeout_ms: 30000
-  default_delay_sec: 5
+  default_min_delay_sec: 0.4
+  default_max_delay_sec: 2
   max_retries: 3
 
 browser:

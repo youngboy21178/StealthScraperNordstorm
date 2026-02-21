@@ -25,7 +25,7 @@ async def main():
         cookies_manager=cookies_manager
     )
 
-    # 4. Database
+
     db = DatabaseConnection(settings.db_path)
     repository = ProductRepository(db)
 
@@ -33,7 +33,8 @@ async def main():
     service = ScrapingService(
         browser_factory=browser_factory,
         scraper_class=NordstromScraper,
-        repository=repository
+        repository=repository,
+        scraper_settings=settings.browser
     )
 
     await service.run()
