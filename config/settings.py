@@ -16,7 +16,7 @@ class ScraperSettings(BaseModel):
     max_retries: int
 
 class DatabaseSettings(BaseModel):
-    db_name: str
+    db_path: str
     schema_file: str
 
 class StorageSettings(BaseModel):

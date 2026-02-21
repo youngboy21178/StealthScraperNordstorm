@@ -26,7 +26,10 @@ async def main():
     )
 
 
-    db = DatabaseConnection(settings.db_path)
+    db = DatabaseConnection(
+        path=settings.database.db_path,
+        schema_path=settings.database.schema_file
+    )
     repository = ProductRepository(db)
 
     # 5. Scraping service

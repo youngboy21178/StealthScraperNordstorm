@@ -17,7 +17,7 @@ browser:
   window_height: 1080
 
 database:
-  db_name: "scraper_data.duckdb"
+  db_path: "infrastructure/database/scraper_data.duckdb"
   schema_file: "infrastructure/database/schema.sql"
 
 storage:

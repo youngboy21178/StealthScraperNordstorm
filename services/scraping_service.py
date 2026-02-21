@@ -19,14 +19,15 @@ class ScrapingService:
 
 
     async def run(self):
-        # 1. Отримуємо браузер та профіль (контекст)
         await self.browser_factory.create()
         page, context = await self.browser_factory.get_page()
         
         try:
 
             scraper = self.scraper_class(
-                
+                scrper_settings=self.scraper_settings,
+                page=page,
+                context=context
             )
             
             products = await scraper.scrape()

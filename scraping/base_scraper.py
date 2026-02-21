@@ -2,20 +2,21 @@
 import logging, asyncio, random
 from abc import ABC, abstractmethod
 from playwright.async_api import BrowserContext, Page, TimeoutError as PlaywrightTimeoutError
+from config.settings import ScraperSettings
 
 class Scraper : 
         """
         Base scraper class
         """
         def __init__(
-                self,
-                url : str,
+                self, 
+                scrper_settings: ScraperSettings,
                 page: Page,
-                context: BrowserContext,
-                timeout_ms: int
+                context: BrowserContext
             ): 
-            self.timeout_ms = timeout_ms
-            self.url = url
+            self.min_default_delay_sec = scrper_settings.min_default_delay_sec
+            self.max_default_delay_sec = scrper_settings.min_default_delay_sec
+            self.url = scrper_settings.start_url
             self.page = page
             self.context = context
             self.logger = logging.getLogger(__name__)
