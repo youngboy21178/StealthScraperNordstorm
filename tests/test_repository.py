@@ -1,13 +1,9 @@
 import pytest
 import duckdb
+import os
 from core.models import Product
 
-# Увага: перевір, чи правильний шлях імпорту для твого проєкту!
 from infrastructure.database.repositories import ProductRepository 
-
-import os
-import pytest
-import duckdb
 
 @pytest.fixture
 def db_connection():
@@ -20,11 +16,9 @@ def db_connection():
     current_dir = os.path.dirname(os.path.abspath(__file__))
     schema_path = os.path.join(current_dir, "..", "infrastructure", "database", "schema.sql")
     
-    # Читаємо файл схеми
     with open(schema_path, "r", encoding="utf-8") as f:
         schema_sql = f.read()
         
-    # Виконуємо справжні запити для створення таблиць
     conn.execute(schema_sql)
     
     yield conn  
@@ -48,11 +42,8 @@ def sample_product():
         colors=["Black", "White", "Red"]
     )
 
-
-# --- САМІ ТЕСТИ (Аналог @Test у Java) ---
-
 def test_add_product_saves_to_db(repository, db_connection, sample_product):
-    """Перевіряємо, чи один товар успішно зберігається у БД разом з кольорами."""
+    """We check whether one product is successfully stored in the database along with colours."""
     
     # 1. Викликаємо метод (Act)
     repository.add_product(sample_product)

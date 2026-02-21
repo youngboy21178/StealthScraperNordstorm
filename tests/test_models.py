@@ -2,7 +2,7 @@ import pytest
 from core.models import Product
 
 def test_product_creation_success():
-    """Перевіряємо, що об'єкт Product успішно створюється з правильними даними."""
+    """We verify that the Product object is successfully created with the correct data."""
     
     product = Product(
         title="Awesome Shoes",
@@ -21,7 +21,7 @@ def test_product_creation_success():
     assert "Black" in product.colors
 
 def test_product_creation_without_colors():
-    """Перевіряємо створення товару без кольорів (наприклад, якщо це один розмір/колір)."""
+    """We check the creation of products without colours (for example, if it is one size/colour)."""
     
     product = Product(
         title="Simple Hat",
