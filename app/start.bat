@@ -1,18 +1,20 @@
 @echo off
 echo ===================================
-echo 🧪 RUNNING TESTS BEFORE START...
+echo [TESTS] RUNNING TESTS BEFORE START...
 echo ===================================
 
-call env\Scripts\activate.bat
-pytest
+env\Scripts\python.exe -m pytest
 
 if %ERRORLEVEL% NEQ 0 (
     echo.
-    echo ❌ CRITICAL: Tests failed! The scraper will NOT start.
+    echo [ERROR] CRITICAL: Tests failed! The scraper will NOT start.
     exit /B %ERRORLEVEL%
 )
 
 echo.
-echo ✅ Tests passed! Starting the scraper...
+echo [SUCCESS] Tests passed! Starting the scraper...
 echo ===================================
-python main.py
+
+set PYTHONPATH=.
+
+env\Scripts\python.exe app\main.py

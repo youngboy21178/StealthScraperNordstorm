@@ -10,15 +10,16 @@ class Scraper :
         """
         def __init__(
                 self, 
-                scrper_settings: ScraperSettings,
+                settings: ScraperSettings,
                 page: Page,
                 context: BrowserContext
             ): 
-            self.min_default_delay_sec = scrper_settings.min_default_delay_sec
-            self.max_default_delay_sec = scrper_settings.min_default_delay_sec
-            self.url = scrper_settings.start_url
+            self.min_default_delay_sec = settings.min_default_delay_sec
+            self.max_default_delay_sec = settings.min_default_delay_sec
+            self.url = settings.start_url
             self.page = page
             self.context = context
+            self.max_retries = settings.max_retries
             self.logger = logging.getLogger(__name__)
 
         def __str__(self) -> str:
@@ -61,8 +62,10 @@ class Scraper :
                 
                 await self.random_delay()
         
-        async def random_delay(self) -> None:
+        async def random_delay(self, min_sec: float = 0, max_sec: float = 0) -> None:
             """Makes a random pause."""
-            delay = random.uniform(self.min_default_delay_sec, self.max_default_delay_sec)
+            if min_sec == 0 and max_sec == 0 :
+                min_sec, max_sec = self.min_default_delay_sec, self.max_default_delay_sec
+            delay = random.uniform(min_sec, max_sec)
             self.logger.debug(f"Sleeping for {delay:.2f} seconds...")
             await asyncio.sleep(delay)

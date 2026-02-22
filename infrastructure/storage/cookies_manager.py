@@ -10,7 +10,7 @@ class CookiesManager:
         """Check, if saved cookies exist"""
         return os.path.exists(self.cookies_path)
 
-    async def save_cookies(self, context) -> None:
+    async def save(self, context) -> None:
         """Save current browser state in file"""
         try:
             await context.storage_state(path=self.cookies_path)
@@ -18,7 +18,7 @@ class CookiesManager:
         except Exception as e:
             self.logger.error(f"Failed to save cookies: {e}")
 
-    def clear_cookies(self) -> None:
+    def clear(self) -> None:
         """Clear old cookies"""
         if self.has_cookies():
             os.remove(self.cookies_path)

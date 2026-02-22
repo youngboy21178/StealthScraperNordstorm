@@ -17,7 +17,7 @@ class DatabaseConnection:
         if not schema_file.exists():
             raise FileNotFoundError("Schema file not found")
 
-        with open(schema_file, "r") as f:
+        with open(schema_file, "r", encoding="utf-8") as f:
             self.conn.execute(f.read())
 
     def execute(self, query, params=None):

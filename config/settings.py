@@ -11,8 +11,8 @@ class ScraperSettings(BaseModel):
     base_url: str
     start_url: str
     timeout_ms: int
-    min_default_delay_sec: int
-    max_default_delay_sec: int
+    min_default_delay_sec: float
+    max_default_delay_sec: float
     max_retries: int
 
 class DatabaseSettings(BaseModel):

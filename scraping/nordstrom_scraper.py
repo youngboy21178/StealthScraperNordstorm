@@ -14,6 +14,9 @@ class NordstromScraper(Scraper):
         The main method required by the base class.
         It combines verification and data collection.
         """
+        await self.navigate()
+        await self.open_sale_page(self.max_retries)
+        await self.choose_filters()
         if not await self.check_products_loaded(): 
             raise ProductsNotFound
 
@@ -56,11 +59,11 @@ class NordstromScraper(Scraper):
         
         for attempt in range(try_count):
             try:
-                await self.random_delay(1.0, 1.5) 
+                await self.random_delay() 
                 
                 link = self.page.get_by_role("link", name=NordstromSelectors.LINK_UNDER_50, exact=True)
                 await link.hover()
-                await self.random_delay(0.4, 0.6)
+                await self.random_delay()
                 
                 await link.click()
                 self.logger.debug(f"The 'Under $50' link was pressed (attempt {attempt + 1})")
@@ -74,10 +77,10 @@ class NordstromScraper(Scraper):
                     raise OpenSalePageException
                 
                 self.logger.info("Retrying...")
-                await self.random_delay(2.0, 2.5)
+                await self.random_delay()
 
         self.logger.debug("Waiting after clicking the link...")
-        await self.random_delay(4.0, 6.0)
+        await self.random_delay()
     
     async def choose_filters(self) -> None: 
         await self.check_products_loaded()
@@ -121,7 +124,7 @@ class NordstromScraper(Scraper):
         else:
             self.logger.warning("No products found! Reloading the page...")
             await self.page.get_by_role("button", name=NordstromSelectors.BTN_TOP, exact=True).click()
-            await self.random_delay(4.0, 6.0) 
+            await self.random_delay() 
             return False
             
     async def _get_price(self, item: Locator) -> tuple[float, float, str]:

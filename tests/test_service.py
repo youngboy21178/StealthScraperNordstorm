@@ -64,8 +64,8 @@ async def test_scraping_service_run_flow():
     mock_repository.save_all.assert_called_once_with(["Fake Product 1", "Fake Product 2"])
     
     # Чи дістав він куки і чи відправив їх на збереження?
-    mock_context.cookies.assert_awaited_once()
-    mock_factory.cookies_manager.save.assert_awaited_once_with([{"name": "session", "value": "12345"}])
+    # Чи передав він контекст у менеджер для збереження кук?
+    mock_factory.cookies_manager.save.assert_awaited_once_with(mock_context)
     
     # НАЙГОЛОВНІШЕ: чи зупинив він браузер у кінці (блок finally)?
     mock_factory.stop.assert_awaited_once()

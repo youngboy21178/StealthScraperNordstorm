@@ -1,13 +1,17 @@
 import asyncio
+import sys
+
 
 from services.scraping_service import ScrapingService
 from scraping.browser_factory import BrowserFactory
-from StealthScraperNordstorm.scraping.nordstrom_scraper import NordstromScraper 
+from scraping.nordstrom_scraper import NordstromScraper 
 from infrastructure.database.connection import DatabaseConnection
 from infrastructure.database.repositories import ProductRepository
 from infrastructure.storage.cookies_manager import CookiesManager
 from infrastructure.logging.logging_config import setup_logging
 from config.settings import Settings
+
+
 
 
 async def main():
@@ -37,7 +41,7 @@ async def main():
         browser_factory=browser_factory,
         scraper_class=NordstromScraper,
         repository=repository,
-        scraper_settings=settings.browser
+        scraper_settings=settings.scraper
     )
 
     await service.run()

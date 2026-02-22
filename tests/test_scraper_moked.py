@@ -16,7 +16,7 @@ def scraper():
     mock_settings.start_url = "https://nordstrom.com/fake"
     
     return NordstromScraper(
-        scrper_settings=mock_settings, 
+        settings=mock_settings, 
         page=mock_page, 
         context=mock_context
     )

@@ -45,45 +45,43 @@ def sample_product():
 def test_add_product_saves_to_db(repository, db_connection, sample_product):
     """We check whether one product is successfully stored in the database along with colours."""
     
-    # 1. Викликаємо метод (Act)
     repository.add_product(sample_product)
     
-    # 2. Перевіряємо таблицю products (Assert)
     saved_product = db_connection.execute("SELECT title, min_price FROM products").fetchone()
-    assert saved_product is not None, "Товар не зберігся в базу!"
-    assert saved_product[0] == "Nike Air Max" # title
-    assert saved_product[1] == 99.99          # min_price
+    assert saved_product is not None
+    assert saved_product[0] == "Nike Air Max"
+    assert saved_product[1] == 99.99          
     
-    # 3. Перевіряємо зв'язану таблицю кольорів (Assert)
-    saved_colors = db_connection.execute("SELECT color_name FROM product_colors").fetchall()
-    assert len(saved_colors) == 3, "Збереглися не всі кольори!"
+    # НОВИЙ ЗАПИТ: З'єднуємо 3 таблиці через JOIN, щоб дістати назви кольорів
+    saved_colors = db_connection.execute("""
+        SELECT c.name 
+        FROM product_colors_link pcl
+        JOIN colors c ON pcl.color_id = c.id
+    """).fetchall()
     
-    # Перетворюємо список кортежів [('Black',), ('White',), ('Red',)] у звичайний список
+    assert len(saved_colors) == 3
     color_names = [row[0] for row in saved_colors]
     assert "Black" in color_names
     assert "Red" in color_names
 
 def test_save_all_inserts_multiple_products(repository, db_connection):
-    """Перевіряємо пакетне збереження товарів."""
+    """We check batch storage of goods."""
     
     products_list = [
         Product(title="Shoe 1", link="link1", min_price=10, max_price=10, valute="$", colors=[]),
         Product(title="Shoe 2", link="link2", min_price=20, max_price=20, valute="$", colors=["Blue"]),
     ]
     
-    # 1. Викликаємо метод збереження списку
     repository.save_all(products_list)
     
-    # 2. Перевіряємо кількість записів
     count_result = db_connection.execute("SELECT COUNT(*) FROM products").fetchone()
     assert count_result[0] == 2, "Мало бути збережено 2 товари!"
 
 def test_save_all_with_empty_list_does_not_fail(repository, db_connection):
-    """Перевіряємо, що пустий список не викликає помилок (Edge Case)."""
+    """We verify that an empty list does not cause errors (Edge Case)."""
     
-    # Метод не повинен викидати Exception
     repository.save_all([]) 
     
-    # Перевіряємо, що база залишилась пустою
     count_result = db_connection.execute("SELECT COUNT(*) FROM products").fetchone()
     assert count_result[0] == 0
+

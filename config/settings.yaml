@@ -2,8 +2,8 @@ scraper:
   base_url: "https://www.nordstrom.com"
   start_url: "https://www.nordstrom.com"
   timeout_ms: 30000
-  default_min_delay_sec: 0.4
-  default_max_delay_sec: 2
+  min_default_delay_sec: 0.4
+  max_default_delay_sec: 2.0
   max_retries: 3
 
 browser:
@@ -13,8 +13,8 @@ browser:
   webgl_renderer: "Apple M1, or similar"
   humanize: true
   locale: "en-US"
-  window_width: 1920
-  window_height: 1080
+  window_width: 1600
+  window_height: 900
 
 database:
   db_path: "infrastructure/database/scraper_data.duckdb"

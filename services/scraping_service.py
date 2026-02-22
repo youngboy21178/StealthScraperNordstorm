@@ -25,7 +25,7 @@ class ScrapingService:
         try:
 
             scraper = self.scraper_class(
-                scrper_settings=self.scraper_settings,
+                settings=self.scraper_settings,
                 page=page,
                 context=context
             )
@@ -35,8 +35,8 @@ class ScrapingService:
             if products:
                 self.repository.save_all(products)
             
-            cookies = await context.cookies()
-            await self.browser_factory.cookies_manager.save(cookies)
+
+            await self.browser_factory.cookies_manager.save(context)
 
         finally:
             await self.browser_factory.stop()
