@@ -11,9 +11,6 @@ from infrastructure.storage.cookies_manager import CookiesManager
 from infrastructure.logging.logging_config import setup_logging
 from config.settings import Settings
 
-
-
-
 async def main():
     settings = Settings.load()
     setup_logging(
@@ -36,7 +33,6 @@ async def main():
     )
     repository = ProductRepository(db)
 
-    # 5. Scraping service
     service = ScrapingService(
         browser_factory=browser_factory,
         scraper_class=NordstromScraper,
