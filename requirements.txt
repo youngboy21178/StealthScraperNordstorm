@@ -1,0 +1,7 @@
+browserforge==1.2.4
+camoufox==0.4.11
+duckdb==1.4.4
+playwright==1.58.0
+pydantic==2.12.5
+pytest==9.0.2
+PyYAML==6.0.3
