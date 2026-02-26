@@ -43,14 +43,14 @@ cd StealthScraperNordstorm
 python -m venv .venv
 .venv\Scripts\activate
 pip install -r requirements.txt
-```bash
+```
 
 
 **2. Run the Scraper (includes Pytest check):
 
 ```bash
 .\app\start.bat
-```bash
+```
 
 **3. View the Normalized Data:
 
@@ -58,6 +58,6 @@ pip install -r requirements.txt
 
 ```bash
 python scripts/show_db.py
-```bash
+```
 
 Disclaimer: This project is for educational purposes only to demonstrate advanced web scraping, fingerprint spoofing, and software architecture concepts.
