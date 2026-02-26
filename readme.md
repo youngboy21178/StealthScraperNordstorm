@@ -46,13 +46,13 @@ pip install -r requirements.txt
 ```
 
 
-**2. Run the Scraper (includes Pytest check):
+**2. Run the Scraper (includes Pytest check):**
 
 ```bash
 .\app\start.bat
 ```
 
-**3. View the Normalized Data:
+**3. View the Normalized Data:**
 
 
 
