@@ -3,7 +3,7 @@ echo ===================================
 echo [TESTS] RUNNING TESTS BEFORE START...
 echo ===================================
 
-env\Scripts\python.exe -m pytest
+.venv\Scripts\python.exe -m pytest
 
 if %ERRORLEVEL% NEQ 0 (
     echo.
@@ -17,4 +17,4 @@ echo ===================================
 
 set PYTHONPATH=.
 
-env\Scripts\python.exe app\main.py
+.venv\Scripts\python.exe app\main.py
