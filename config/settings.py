@@ -7,6 +7,12 @@ CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 CONFIG_PATH = os.path.join(CURRENT_DIR, "settings.yaml")
 
 
+class ProxySettings(BaseModel):
+    enabled: bool = False
+    server: str = None
+    username: str = None
+    password: str = None
+
 class ScraperSettings(BaseModel):
     base_url: str
     start_url: str
@@ -36,6 +42,7 @@ class BrowserSettings(BaseModel):
     locale: str
     window_width: int
     window_height: int
+    proxy: ProxySettings = ProxySettings()
 
 
 class Settings(BaseModel):

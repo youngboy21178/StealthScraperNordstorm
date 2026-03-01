@@ -45,6 +45,15 @@ class BrowserFactory:
             "locale": self.settings.locale
             
         }
+        if self.settings.proxy.enabled:
+            self.logger.info(f"Connecting the proxy: {self.settings.proxy.server}")
+            
+            
+            launch_config["proxy"] = {
+                "server": self.settings.proxy.server,
+                "username": self.settings.proxy.username,
+                "password": self.settings.proxy.password
+            }
 
         self._browser = await AsyncCamoufox(**launch_config).start()
         self.logger.info("Browser instance created.")
