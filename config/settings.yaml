@@ -18,9 +18,9 @@ browser:
 
   proxy:
     enabled: false
-    server: "http://unblock.oxylabs.io:60000" 
-    username: "_SOBmd_SOBmd"
-    password: "B+7+dfmZOTxP0uPs"
+    server: "server" 
+    username: "proxi username"
+    password: "proxi password"
 
 database:
   db_path: "infrastructure/database/scraper_data.duckdb"
